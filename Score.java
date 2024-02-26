@@ -13,6 +13,20 @@ public class Score {
     public Score(ArrayList<Integer> bluePucks, ArrayList<Integer> redPucks){
         this.score = 0;
         this.color = "";
+        int longestBlue = 0;
+        int longestRed = 0;
+        for(int i=0;i<4;i++){
+            int bluePuck = bluePucks.get(i);
+            if (longestBlue<bluePuck){
+                longestBlue = bluePuck;
+            }
+            int redPuck = redPucks.get(i);
+            if(longestRed<redPuck){
+                longestRed = redPuck;
+            }
+        }
+        System.out.println("Longest blue: " + longestBlue + " Longest red: " + longestRed);
+
         //write code to find score here
     }
     public int getScore() {
