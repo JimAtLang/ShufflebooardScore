@@ -17,16 +17,48 @@ public class Score {
         int longestRed = 0;
         for(int i=0;i<4;i++){
             int bluePuck = bluePucks.get(i);
-            if (longestBlue<bluePuck){
+            if (longestBlue<bluePuck && bluePuck > SHORTFOULLINE && longestBlue < LONGFOULLINE){
                 longestBlue = bluePuck;
             }
             int redPuck = redPucks.get(i);
-            if(longestRed<redPuck){
+            if(longestRed<redPuck && redPuck > SHORTFOULLINE && longestBlue < LONGFOULLINE){
                 longestRed = redPuck;
             }
         }
-        System.out.println("Longest blue: " + longestBlue + " Longest red: " + longestRed);
-
+        //System.out.println("Longest blue: " + longestBlue + " Longest red: " + longestRed);
+        if(longestBlue>longestRed){
+            this.color = "blue";
+            for(int puck : bluePucks){
+                if(puck > longestRed && puck < LONGFOULLINE){
+                    if(puck < SHORTFOULLINE){
+                        score++;
+                    }
+                    if(puck > TWOPOINTLINE){
+                        score++;
+                    }
+                    if(puck > THREEPOINTLINE){
+                        score++;
+                    }
+                }
+            }
+        } else if (longestBlue == longestRed) {
+            this.color = "";
+        } else {
+            this.color = "";
+            for(int puck : bluePucks){
+                if(puck > longestRed && puck < LONGFOULLINE){
+                    if(puck < SHORTFOULLINE){
+                        score++;
+                    }
+                    if(puck > TWOPOINTLINE){
+                        score++;
+                    }
+                    if(puck > THREEPOINTLINE){
+                        score++;
+                    }
+                }
+            }
+        }
         //write code to find score here
     }
     public int getScore() {
